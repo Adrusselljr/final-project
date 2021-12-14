@@ -14,6 +14,7 @@ let firstClick
 let cardTwo
 let turn = 0
 let matchCount = 0
+let cardNum
 
 // Create board based on difficulty
 if(difficulty === "easy") {
@@ -47,18 +48,16 @@ const reset = () => {
 
     setTimeout(() => {
 
-        const winMessage = $("#winMessage")
-        winMessage.remove()
+        winner.remove()
         card.attr("src", "./images/cardBack.jpeg")
         matchCount = 0
+        cardNum = _.shuffle(cardNum)
 
     }, 2000)
 
 }
 
 // Get card values
-let cardNum
-
 if(difficulty === "easy") {
     cardNum = [1, 1, 2, 2, 3, 3, 4, 4]
 }
@@ -121,7 +120,6 @@ board.on('click', e => {
             if(cardOne === cardTwo) {
                 matchCount++
                 if(matchCount === 4) {
-                    console.log(`is4: ${matchCount}`)
                     reset()
                 }
                 if(matchCount === 6) {
@@ -130,7 +128,6 @@ board.on('click', e => {
                 if(matchCount === 8) {
                     reset()
                 }
-                console.log(matchCount)
                 console.log("match")
             }
             else {
@@ -142,6 +139,7 @@ board.on('click', e => {
         }, 500)
 
         turn = 0
+
     }
 
 })
