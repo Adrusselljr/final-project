@@ -53,3 +53,32 @@ a {
 a:hover {
     color: black
 }
+
+#board {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cardImg {
+    width: 200px;
+    height: 300px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.cardImg:hover {
+    opacity: 0.7;
+}
+
+#winMessage {
+    margin-bottom: 20px;
+}
