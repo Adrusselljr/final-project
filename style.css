@@ -73,6 +73,7 @@ a:hover {
     height: 300px;
     margin: 20px;
     border-radius: 10px;
+    background-color: rgb(254, 40, 16);
 }
 
 .cardImg:hover {
@@ -81,4 +82,12 @@ a:hover {
 
 #winMessage {
     margin-bottom: 20px;
+}
+
+.match {
+    background-color: rgb(254, 40, 16);
+    width: 200px;
+    height: 300px;
+    margin: 20px;
+    border-radius: 10px;
 }

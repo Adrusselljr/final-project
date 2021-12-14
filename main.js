@@ -73,6 +73,8 @@ if(difficulty === "hard") {
 cardNum = _.shuffle(cardNum)
 
 // Set up click listener
+const oneCard = $(".card")
+
 board.on('click', e => {
 
     const index = $(e.target).attr("id")
@@ -118,7 +120,9 @@ board.on('click', e => {
         setTimeout(() => {
 
             if(cardOne === cardTwo) {
+
                 matchCount++
+
                 if(matchCount === 4) {
                     reset()
                 }
@@ -128,12 +132,16 @@ board.on('click', e => {
                 if(matchCount === 8) {
                     reset()
                 }
+
                 console.log("match")
+
             }
             else {
+
                 firstClick.attr("src", "./images/cardBack.jpeg")
                 $(e.target).attr("src", "./images/cardBack.jpeg")
                 console.log("dont match")
+
             }
 
         }, 500)
