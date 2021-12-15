@@ -16,6 +16,11 @@ let turn = 0
 let matchCount = 0
 let cardNum
 
+// Setup sounds
+const cardFlip = new Audio('./sounds/cardFlip.ogg')
+const cardShuffle = new Audio('./sounds/cardShuffle.wav')
+const correct = new Audio('./sounds/correct.wav')
+
 // Create board based on difficulty
 if(difficulty === "easy") {
     for(let i = 0; i < 8; i++) {
@@ -52,6 +57,7 @@ const reset = () => {
         card.attr("src", "./images/cardBack.jpeg")
         matchCount = 0
         cardNum = _.shuffle(cardNum)
+        cardShuffle.play()
 
     }, 2000)
 
@@ -71,6 +77,7 @@ if(difficulty === "hard") {
 }
 
 cardNum = _.shuffle(cardNum)
+cardShuffle.play()
 
 // Set up click listener
 const oneCard = $(".card")
@@ -82,27 +89,35 @@ board.on('click', e => {
     // Set clicked card image
     if(cardNum[index] === 1) {
         $(e.target).attr("src", "./images/ace.jpg")
+        cardFlip.play()
     }
     if(cardNum[index] === 2) {
         $(e.target).attr("src", "./images/king.png")
+        cardFlip.play()
     }
     if(cardNum[index] === 3) {
         $(e.target).attr("src", "./images/queen.png")
+        cardFlip.play()
     }
     if(cardNum[index] === 4) {
         $(e.target).attr("src", "./images/jack.png")
+        cardFlip.play()
     }
     if(cardNum[index] === 5) {
         $(e.target).attr("src", "./images/ten.png")
+        cardFlip.play()
     }
     if(cardNum[index] === 6) {
         $(e.target).attr("src", "./images/nine.png")
+        cardFlip.play()
     }
     if(cardNum[index] === 7) {
         $(e.target).attr("src", "./images/eight.png")
+        cardFlip.play()
     }
     if(cardNum[index] === 8) {
         $(e.target).attr("src", "./images/seven.png")
+        cardFlip.play()
     }
 
     // Check if cards match or not
@@ -120,6 +135,8 @@ board.on('click', e => {
         setTimeout(() => {
 
             if(cardOne === cardTwo) {
+
+                correct.play()
 
                 matchCount++
 
@@ -140,6 +157,7 @@ board.on('click', e => {
 
                 firstClick.attr("src", "./images/cardBack.jpeg")
                 $(e.target).attr("src", "./images/cardBack.jpeg")
+                cardFlip.play()
                 console.log("dont match")
 
             }
