@@ -84,26 +84,22 @@ const reset = () => {
         const loser = $("<h3 id='winMessage'>YOU LOSE!</h3>")
         message.append(loser)
         setTimeout(() => {
-
             loser.remove()
             card.attr("src", "./images/cardBack.jpeg")
             matchCount = 0
             cardNum = _.shuffle(cardNum)
             cardShuffle.play()
-    
         }, 2000)
     }
     else {
         const winner = $("<h3 id='winMessage'>YOU WON!</h3>")
         message.append(winner)
         setTimeout(() => {
-
             winner.remove()
             card.attr("src", "./images/cardBack.jpeg")
             matchCount = 0
             cardNum = _.shuffle(cardNum)
             cardShuffle.play()
-    
         }, 2000)
     }
 
