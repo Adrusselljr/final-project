@@ -22,7 +22,7 @@
 
 #memoryLogo {
     width: 50%;
-    margin-bottom: 100px;
+    margin-bottom: 25px;
 }
 
 main {
@@ -81,4 +81,8 @@ a:hover {
 
 #winMessage {
     margin-bottom: 20px;
+}
+
+#countDown {
+    margin-bottom: 25px;
 }

@@ -7,6 +7,7 @@ const difficulty = params.difficulty
 // Query elements
 const board = $("#board")
 const message = $("#text")
+const countDown = $("#countDown")
 
 // Set variables
 let cardOne
@@ -14,6 +15,7 @@ let firstClick
 let cardTwo
 let turn = 0
 let matchCount = 0
+let countDownNum
 let cardNum
 
 // Setup sounds
@@ -24,75 +26,102 @@ const correct = new Audio('./sounds/correct.wav')
 // Get card values
 if(difficulty === "easy") {
     cardNum = [1, 1, 2, 2, 3, 3, 4, 4]
+    countDownNum = 13
+    countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
 }
 
 if(difficulty === "medium") {
     cardNum = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6]
+    countDownNum = 19
+    countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
 }
 
 if(difficulty === "hard") {
     cardNum = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8]
+    countDownNum = 23
+    countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
 }
 
-cardShuffle.play()
+cardNum = _.shuffle(cardNum)
+
+// Helper funtion
+const boardBulider = num => {
+    for(let i = 0; i < num; i++) {
+        const layout = $(`
+            <div class="card">
+                <img id="${i}" class="cardImg" src="./images/cardBack.jpeg" alt="Card Back">
+            </div>
+        `)
+        board.append(layout)
+    }
+}
 
 // Create board based on difficulty
 setTimeout(() => {
 
     if(difficulty === "easy") {
-        for(let i = 0; i < 8; i++) {
-            const layout = $(`
-                <div class="card">
-                    <img id="${i}" class="cardImg" src="./images/cardBack.jpeg" alt="Card Back">
-                </div>
-            `)
-            board.append(layout)
-        }
+        boardBulider(8)
     }
     
     if(difficulty === "medium") {
-        for(let i = 0; i < 12; i++) {
-            const layout = $(`
-                <div class="card">
-                    <img id="${i}" class="cardImg" src="./images/cardBack.jpeg" alt="Card Back">
-                </div>
-            `)
-            board.append(layout)
-        }
+        boardBulider(12)
     }
     
     if(difficulty === "hard") {
-        for(let i = 0; i < 16; i++) {
-            const layout = $(`
-                <div class="card">
-                    <img id="${i}" class="cardImg" src="./images/cardBack.jpeg" alt="Card Back">
-                </div>
-            `)
-            board.append(layout)
-        }
+        boardBulider(16)
     }
+
+    cardShuffle.play()
 
 }, 250)
 
-cardNum = _.shuffle(cardNum)
-
 // Reset board
-
 const reset = () => {
-    
+
     const card = $(".cardImg")
 
-    const winner = $("<h3 id='winMessage'>YOU WON!</h3>")
-    message.append(winner)
+    if(countDownNum === 0) {
+        const loser = $("<h3 id='winMessage'>YOU LOSE!</h3>")
+        message.append(loser)
+        setTimeout(() => {
+
+            loser.remove()
+            card.attr("src", "./images/cardBack.jpeg")
+            matchCount = 0
+            cardNum = _.shuffle(cardNum)
+            cardShuffle.play()
+    
+        }, 2000)
+    }
+    else {
+        const winner = $("<h3 id='winMessage'>YOU WON!</h3>")
+        message.append(winner)
+        setTimeout(() => {
+
+            winner.remove()
+            card.attr("src", "./images/cardBack.jpeg")
+            matchCount = 0
+            cardNum = _.shuffle(cardNum)
+            cardShuffle.play()
+    
+        }, 2000)
+    }
 
     setTimeout(() => {
-
-        winner.remove()
-        card.attr("src", "./images/cardBack.jpeg")
-        matchCount = 0
-        cardNum = _.shuffle(cardNum)
-        cardShuffle.play()
-
+        if(difficulty === "easy") {
+            countDownNum = 13
+            countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
+        }
+        
+        if(difficulty === "medium") {
+            countDownNum = 19
+            countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
+        }
+        
+        if(difficulty === "hard") {
+            countDownNum = 23
+            countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
+        }
     }, 2000)
 
 }
@@ -100,8 +129,10 @@ const reset = () => {
 // Setup onClick for board
 board.on('click', e => {
 
+    // Set card values based on id
     const index = $(e.target).attr("id")
 
+    // Play sound
     cardFlip.play()
 
     // Set clicked card image
@@ -137,6 +168,13 @@ board.on('click', e => {
         $(e.target).attr("src", "./images/seven.png")
         $(e.target).attr("alt", "Seven of Diamonds")
     }
+
+    countDownNum--
+    countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
+    if(countDownNum === 0) {
+        reset()
+    }
+
 
     // Check if cards match or not
     if(turn === 0) {
