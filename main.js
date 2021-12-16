@@ -23,23 +23,26 @@ const cardFlip = new Audio('./sounds/cardFlip.ogg')
 const cardShuffle = new Audio('./sounds/cardShuffle.wav')
 const correct = new Audio('./sounds/correct.wav')
 
+// CoountDownNum helper
+const countDownHelper = num => {
+    countDownNum = num
+    countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
+}
+
 // Get card values
 if(difficulty === "easy") {
     cardNum = [1, 1, 2, 2, 3, 3, 4, 4]
-    countDownNum = 13
-    countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
+    countDownHelper(13)
 }
 
 if(difficulty === "medium") {
     cardNum = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6]
-    countDownNum = 19
-    countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
+    countDownHelper(19)
 }
 
 if(difficulty === "hard") {
     cardNum = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8]
-    countDownNum = 23
-    countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
+    countDownHelper(23)
 }
 
 cardNum = _.shuffle(cardNum)
@@ -105,18 +108,15 @@ const reset = () => {
 
     setTimeout(() => {
         if(difficulty === "easy") {
-            countDownNum = 13
-            countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
+            countDownHelper(13)
         }
         
         if(difficulty === "medium") {
-            countDownNum = 19
-            countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
+            countDownHelper(19)
         }
         
         if(difficulty === "hard") {
-            countDownNum = 23
-            countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
+            countDownHelper(23)
         }
     }, 2000)
 
