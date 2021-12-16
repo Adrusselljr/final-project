@@ -29,6 +29,18 @@ const countDownHelper = num => {
     countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
 }
 
+// Helper funtion
+const boardBulider = num => {
+    for(let i = 0; i < num; i++) {
+        const layout = $(`
+        <div class="card">
+            <img id="${i}" class="cardImg" src="./images/cardBack.jpeg" alt="Card Back"></img>
+        </div>
+        `)
+        board.append(layout)
+    }
+}
+
 // Get card values
 if(difficulty === "easy") {
     cardNum = [1, 1, 2, 2, 3, 3, 4, 4]
@@ -46,18 +58,6 @@ if(difficulty === "hard") {
 }
 
 cardNum = _.shuffle(cardNum)
-
-// Helper funtion
-const boardBulider = num => {
-    for(let i = 0; i < num; i++) {
-        const layout = $(`
-            <div class="card">
-                <img id="${i}" class="cardImg" src="./images/cardBack.jpeg" alt="Card Back">
-            </div>
-        `)
-        board.append(layout)
-    }
-}
 
 // Create board based on difficulty
 setTimeout(() => {
@@ -165,6 +165,7 @@ board.on('click', e => {
         $(e.target).attr("alt", "Seven of Diamonds")
     }
 
+    // Update countDownNum each click 
     countDownNum--
     countDown.text(`YOU HAVE ${countDownNum} MOVES LEFT!`)
     if(countDownNum === 0) {
