@@ -194,15 +194,22 @@ if(cardNum[index] === 8) {
                 correct.play()
 
                 matchCount++
+                console.log(matchCount)
 
-                if(matchCount === 4) {
-                    reset()
+                if(difficulty === "easy") {
+                    if(matchCount === 4) {
+                        reset()
+                    }
                 }
-                if(matchCount === 6) {
-                    reset()
+                if(difficulty === "medium") {
+                    if(matchCount === 6) {
+                        reset()
+                    }
                 }
-                if(matchCount === 8) {
-                    reset()
+                if(difficulty === "hard") {
+                    if(matchCount === 8) {
+                        reset()
+                    }
                 }
 
                 console.log("match")
