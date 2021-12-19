@@ -5,7 +5,6 @@
     margin: 0;
     vertical-align: top;
     box-sizing: border-box;
-    background-color: rgb(246, 246, 246);
     /* outline: red dotted 1px; */
 }
 
@@ -13,6 +12,10 @@
     width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    background-color: rgb(246, 246, 246);
+    border: darkgray solid 5px;
+    margin-top: 50px;
+    border-radius: 5px;
 }
 
 #head {
@@ -33,6 +36,7 @@ main {
     font-family: 'Luckiest Guy', serif;
     font-size: xx-large;
     color: rgb(254, 40, 16);
+    background-color: rgb(246, 246, 246);
 }
 
 #selectDiff{
@@ -99,6 +103,8 @@ a:hover {
         margin: 5px;
         border-radius: 10px;
     }
+
+
 
     #countDown {
         font-size: small;

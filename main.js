@@ -33,9 +33,9 @@ const countDownHelper = num => {
 const boardBulider = num => {
     for(let i = 0; i < num; i++) {
         const layout = $(`
-        <div class="card">
-            <img id="${i}" class="cardImg" src="./images/cardBack.jpeg" alt="Card Back"></img>
-        </div>
+            <div class="card">
+                <img id="${i}" class="cardImg" src="./images/cardBack.jpeg" alt="Card Back"></img>
+            </div>
         `)
         board.append(layout)
     }
@@ -125,45 +125,47 @@ const reset = () => {
 // Setup onClick for board
 board.on('click', e => {
 
+
     // Set card values based on id
     const index = $(e.target).attr("id")
 
     // Play sound
     cardFlip.play()
 
-    // Set clicked card image
-    if(cardNum[index] === 1) {
-        $(e.target).attr("src", "./images/ace.jpg")
-        $(e.target).attr("alt", "Ace of Clubs")
-    }
-    if(cardNum[index] === 2) {
-        $(e.target).attr("src", "./images/king.png")
-        $(e.target).attr("alt", "King of Hearts")
-    }
-    if(cardNum[index] === 3) {
-        $(e.target).attr("src", "./images/queen.png")
-        $(e.target).attr("alt", "Queen of Diamonds")
-    }
-    if(cardNum[index] === 4) {
-        $(e.target).attr("src", "./images/jack.png")
-        $(e.target).attr("alt", "Jack of Spades")
-    }
-    if(cardNum[index] === 5) {
-        $(e.target).attr("src", "./images/ten.png")
-        $(e.target).attr("alt", "Ten of Spades")
-    }
-    if(cardNum[index] === 6) {
-        $(e.target).attr("src", "./images/nine.png")
-        $(e.target).attr("alt", "Nine of Hearts")
-    }
-    if(cardNum[index] === 7) {
-        $(e.target).attr("src", "./images/eight.png")
-        $(e.target).attr("alt", "Eight of Spades")
-    }
-    if(cardNum[index] === 8) {
-        $(e.target).attr("src", "./images/seven.png")
-        $(e.target).attr("alt", "Seven of Diamonds")
-    }
+// Set clicked card image
+if(cardNum[index] === 1) {
+    $(e.target).attr("src", "./images/ace.jpg")
+    $(e.target).attr("alt", "Ace of Clubs")
+}
+if(cardNum[index] === 2) {
+    $(e.target).attr("src", "./images/king.png")
+    $(e.target).attr("alt", "King of Hearts")
+}
+if(cardNum[index] === 3) {
+    $(e.target).attr("src", "./images/queen.png")
+    $(e.target).attr("alt", "Queen of Diamonds")
+}
+if(cardNum[index] === 4) {
+    $(e.target).attr("src", "./images/jack.png")
+    $(e.target).attr("alt", "Jack of Spades")
+}
+if(cardNum[index] === 5) {
+    $(e.target).attr("src", "./images/ten.png")
+    $(e.target).attr("alt", "Ten of Spades")
+}
+if(cardNum[index] === 6) {
+    $(e.target).attr("src", "./images/nine.png")
+    $(e.target).attr("alt", "Nine of Hearts")
+}
+if(cardNum[index] === 7) {
+    $(e.target).attr("src", "./images/eight.png")
+    $(e.target).attr("alt", "Eight of Spades")
+}
+if(cardNum[index] === 8) {
+    $(e.target).attr("src", "./images/seven.png")
+    $(e.target).attr("alt", "Seven of Diamonds")
+}
+
 
     // Update countDownNum each click 
     countDownNum--
