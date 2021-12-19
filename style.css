@@ -37,6 +37,7 @@ main {
     font-size: xx-large;
     color: rgb(254, 40, 16);
     background-color: rgb(246, 246, 246);
+    -webkit-text-stroke: 2px black;
 }
 
 #selectDiff{
@@ -52,10 +53,12 @@ a {
     text-decoration: none;
     color: rgb(254, 40, 16);
     cursor: pointer;
+    -webkit-text-stroke: 3px black;
 }
 
 a:hover {
-    color: black
+    color: black;
+    -webkit-text-stroke: 3px rgb(254, 40, 16);
 }
 
 #board {
